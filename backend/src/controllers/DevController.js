@@ -60,14 +60,12 @@ module.exports = {
 
     dev.save();
 
-    // const dev = await Dev.findOneAndUpdate(
-    //   { _id: request.params.id },
-    //   { techs: techsArray },
-    //   { new: true }
-    // );
-
     return response.json(dev);
   },
 
-  async destroy(request, response) {}
+  async destroy(request, response) {
+    await Dev.findByIdAndDelete({ _id: request.params.id });
+
+    return response.json({ message: "usuário removido com sucesso" });
+  }
 };
